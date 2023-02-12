@@ -7,3 +7,4 @@ A Java implementation of the offline lowest common ancestors algorithm by Robert
     cd CR.OfflineLCA
     mvn compile test
     mvn exec:java
+    
