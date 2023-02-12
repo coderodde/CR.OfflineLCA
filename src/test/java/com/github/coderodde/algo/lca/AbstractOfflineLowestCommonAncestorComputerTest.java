@@ -6,7 +6,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-public class OfflineLCATest {
+/**
+ *
+ * @author Potilaskone
+ */
+public abstract class AbstractOfflineLowestCommonAncestorComputerTest {
+
+    protected final OfflineLCAAlgorithm<Integer> algorithm;
+    
+    public AbstractOfflineLowestCommonAncestorComputerTest(
+            OfflineLCAAlgorithm<Integer> algorithm) {
+        this.algorithm = algorithm;
+    }
     
     @Test
     public void test1() {
@@ -44,8 +55,7 @@ public class OfflineLCATest {
                 Arrays.asList(query2, query3, query1);
         
         List<LowestCommonAncestorResult<Integer>> results = 
-                new OfflineLowestCommonAncestorComputer<Integer>()
-                        .tarjanOffLineLowestCommonAncestors(tree, queries);
+                algorithm.processQueries(tree, queries);
         
         assertEquals(3, results.size());
         
@@ -93,9 +103,8 @@ public class OfflineLCATest {
                 Arrays.asList(query2,query1);
         
         List<LowestCommonAncestorResult<Integer>> results = 
-                new OfflineLowestCommonAncestorComputer<Integer>()
-                        .tarjanOffLineLowestCommonAncestors(tree, queries);
-        
+                algorithm.processQueries(tree, queries);
+                
         assertEquals(2, results.size());
         
         LowestCommonAncestorResult<Integer> result1 = 

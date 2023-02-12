@@ -1,9 +1,13 @@
-package com.github.coderodde.algo.lca;
+package com.github.coderodde.algo.lca.impl;
 
+import com.github.coderodde.algo.lca.GeneralTree;
+import com.github.coderodde.algo.lca.GeneralTreeNode;
+import com.github.coderodde.algo.lca.LowestCommonAncestorQuery;
+import com.github.coderodde.algo.lca.LowestCommonAncestorResult;
+import com.github.coderodde.algo.lca.OfflineLCAAlgorithm;
 import java.util.ArrayList;
 import java.util.List;
 import com.github.coderodde.util.disjointset.*;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -15,7 +19,8 @@ import java.util.Set;
  * @version 1.6 (Feb 12, 2023)
  * @since 1.6 (Feb 12, 2023)
  */
-public final class FasterOfflineLowestCommonAncestorComputer<E> {
+public final class FasterTarjansOfflineLCAAlgorithm<E> 
+        implements OfflineLCAAlgorithm<E> {
 
     private final AbstractDisjointSetRootFinder<GeneralTreeNode<E>> rootFinder = 
             new DisjointSetRecursivePathCompressionRootFinder<>();
@@ -24,9 +29,8 @@ public final class FasterOfflineLowestCommonAncestorComputer<E> {
             unionComputer = new DisjointSetUnionByRankComputer<>();
     
     public List<LowestCommonAncestorResult<E>> 
-        tarjanOffLineLowestCommonAncestors(
-                GeneralTree<E> tree,
-                List<LowestCommonAncestorQuery<E>> queries) {
+        processQueries(GeneralTree<E> tree,
+                       List<LowestCommonAncestorQuery<E>> queries) {
             
         List<LowestCommonAncestorResult<E>> lowestCommonAncestorsResults = 
                 new ArrayList<>(queries.size());

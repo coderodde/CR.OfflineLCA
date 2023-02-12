@@ -1,5 +1,7 @@
 package com.github.coderodde.algo.lca;
 
+import com.github.coderodde.algo.lca.impl.FasterTarjansOfflineLCAAlgorithm;
+import com.github.coderodde.algo.lca.impl.TarjansOfflineLCAAlgorithm;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -45,13 +47,13 @@ public final class Demo {
         startTime = System.currentTimeMillis();
         
         List<LowestCommonAncestorResult<Integer>> results1 =
-                new OfflineLowestCommonAncestorComputer<Integer>()
-                        .tarjanOffLineLowestCommonAncestors(tree, queries);
+                new TarjansOfflineLCAAlgorithm<Integer>()
+                        .processQueries(tree, queries);
         
         endTime = System.currentTimeMillis();
         duration = endTime - startTime;
         System.out.println(
-                OfflineLowestCommonAncestorComputer.class.getSimpleName()
+                TarjansOfflineLCAAlgorithm.class.getSimpleName()
                         + " in "
                         + duration 
                         + " milliseconds.");
@@ -59,13 +61,13 @@ public final class Demo {
         startTime = System.currentTimeMillis();
         
         List<LowestCommonAncestorResult<Integer>> results2 =
-                new FasterOfflineLowestCommonAncestorComputer<Integer>()
-                        .tarjanOffLineLowestCommonAncestors(tree, queries);
+                new FasterTarjansOfflineLCAAlgorithm<Integer>()
+                        .processQueries(tree, queries);
         
         endTime = System.currentTimeMillis();
         duration = endTime - startTime;
         System.out.println(
-                FasterOfflineLowestCommonAncestorComputer.class.getSimpleName()
+                FasterTarjansOfflineLCAAlgorithm.class.getSimpleName()
                         + " in "
                         + duration 
                         + " milliseconds.");
