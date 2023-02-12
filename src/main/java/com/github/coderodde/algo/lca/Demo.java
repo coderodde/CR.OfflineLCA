@@ -56,30 +56,16 @@ public final class Demo {
         startTime = System.currentTimeMillis();
         
         List<LowestCommonAncestorResult<Integer>> results1 =
-                new TarjansOfflineLCAAlgorithm<Integer>()
-                        .processQueries(tree, queries);
-        
-        endTime = System.currentTimeMillis();
-        duration = endTime - startTime;
-        System.out.println(
-                TarjansOfflineLCAAlgorithm.class.getSimpleName()
-                        + " in "
-                        + duration 
-                        + " milliseconds.");
-        
-        startTime = System.currentTimeMillis();
+                profileLCAAlgorithm(
+                        new TarjansOfflineLCAAlgorithm<>(), 
+                        tree, 
+                        queries);
         
         List<LowestCommonAncestorResult<Integer>> results2 =
-                new FasterTarjansOfflineLCAAlgorithm<Integer>()
-                        .processQueries(tree, queries);
-        
-        endTime = System.currentTimeMillis();
-        duration = endTime - startTime;
-        System.out.println(
-                FasterTarjansOfflineLCAAlgorithm.class.getSimpleName()
-                        + " in "
-                        + duration 
-                        + " milliseconds.");
+                profileLCAAlgorithm(
+                        new FasterTarjansOfflineLCAAlgorithm<>(), 
+                        tree, 
+                        queries);
         
         Set<LowestCommonAncestorResult<Integer>> resultSet1 = 
                 new HashSet<>(results1);
@@ -160,5 +146,27 @@ public final class Demo {
         }
         
         return queries;
+    }
+        
+    private static List<LowestCommonAncestorResult<Integer>> 
+        profileLCAAlgorithm(
+            OfflineLCAAlgorithm<Integer> algorithm, 
+            GeneralTree<Integer> tree, 
+            List<LowestCommonAncestorQuery<Integer>> queries) {
+        
+        long startTime = System.currentTimeMillis();
+        
+        List<LowestCommonAncestorResult<Integer>> results =
+                algorithm.processQueries(tree, queries);
+        
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+        System.out.println(
+                algorithm.getClass().getName()
+                        + " in "
+                        + duration 
+                        + " milliseconds.");
+        
+        return results;
     }
 }
