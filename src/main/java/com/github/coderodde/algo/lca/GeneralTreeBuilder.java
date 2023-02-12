@@ -3,8 +3,11 @@ package com.github.coderodde.algo.lca;
 import java.util.Random;
 
 /**
- *
- * @author Potilaskone
+ * This class attempts to build a general tree with {@code requestedSize} nodes.
+ * 
+ * @author Rodion "rodde" Efremov
+ * @version 1.6 (Feb 12, 2023)
+ * @since 1.6 (Feb 12, 2023)
  */
 public final class GeneralTreeBuilder {
     

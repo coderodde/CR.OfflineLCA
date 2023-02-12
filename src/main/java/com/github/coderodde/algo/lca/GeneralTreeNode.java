@@ -7,12 +7,22 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- *
- * @author Potilaskone
+ * This class implements a multibranched node in a general tree.
+ * 
+ * @author Rodion "rodde" Efremov
+ * @version 1.6 (Feb 12, 2023)
+ * @since 1.6 (Feb 12, 2023)
  */
 public final class GeneralTreeNode<E> {
     
+    /**
+     * The set of child nodes.
+     */
     private final Set<GeneralTreeNode<E>> children = new HashSet<>();
+    
+    /**
+     * The satellite datum this node holds.
+     */
     private final E datum;
     
     public GeneralTreeNode(E datum) {
@@ -21,6 +31,12 @@ public final class GeneralTreeNode<E> {
                 "The input datum is null.");
     }
     
+    /**
+     * Adds {@code child} to the child list of this node. This operation cannot
+     * prevent directed cycles in the tree.
+     * 
+     * @param child the child node to add.
+     */
     public void addChild(GeneralTreeNode<E> child) {
         children.add(child);
     }

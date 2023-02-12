@@ -14,7 +14,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- *
+ * This class improves on the 
+ * {@link com.github.coderodde.algo.lca.impl.TarjansOfflineLCAAlgorithm} via 
+ * caching queries.
+ * 
  * @author Rodion "rodde" Efremov
  * @version 1.6 (Feb 12, 2023)
  * @since 1.6 (Feb 12, 2023)
@@ -95,6 +98,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         Set<LowestCommonAncestorQuery<E>> pairSet = nodePairMap.get(node);
         
         if (pairSet == null) {
+            // Guard against the null values in the below for each loop.
             return;
         }
         

@@ -67,8 +67,9 @@ public final class LowestCommonAncestorResult<E> {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.queryNode1);
-        hash = 59 * hash + Objects.hashCode(this.queryNode2);
+        hash = 59 * hash + (Objects.hashCode(queryNode1) +
+                            Objects.hashCode(queryNode2));
+        
         hash = 59 * hash + Objects.hashCode(this.queryResultNode);
         return hash;
     }

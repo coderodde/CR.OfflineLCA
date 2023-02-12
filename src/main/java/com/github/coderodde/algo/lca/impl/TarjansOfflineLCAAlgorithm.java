@@ -14,7 +14,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- *
+ * This class implements the 
+ * <a href="https://en.wikipedia.org/wiki/Tarjan%27s_off-line_lowest_common_ancestors_algorithm">Robert Tarjan's offline lowest common ancestors algorithm</a>.
+ * 
  * @author Rodion "rodde" Efremov
  * @version 1.6 (Feb 12, 2023)
  * @since 1.6 (Feb 12, 2023)

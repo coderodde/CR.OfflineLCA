@@ -10,6 +10,15 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * This class implements the demo program/benchmark for comparing performance of
+ * the two offline LCA algorithms in this project.
+ * 
+ * @author Rodion "rodde" Efremov
+ * @version 1.6 (Feb 12, 2023)
+ * @since 1.6 (Feb 12, 2023)
+ * @author Potilaskone
+ */
 public final class Demo {
     
     private static final int TREE_SIZE = 1_000_000;
