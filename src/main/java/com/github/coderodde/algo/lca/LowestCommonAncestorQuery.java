@@ -47,6 +47,8 @@ public final class LowestCommonAncestorQuery<E> {
         throw new IllegalStateException("This should not happen.");
     }
     
+    
+    
     @Override
     public String toString() {
         return new StringBuilder().append("[")

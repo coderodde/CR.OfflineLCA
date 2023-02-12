@@ -2,27 +2,30 @@ package com.github.coderodde.algo.lca;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 public final class Demo {
     
-    private static final int TREE_SIZE = 100_000;
-    private static final int TREE_DEPTH = 1000;
-    private static final int NUMBER_OF_QUERIES = 1000;
+    private static final int TREE_SIZE = 1_000_000;
+    private static final int TREE_DEPTH = 10000;
+    private static final int NUMBER_OF_QUERIES = 2000;
     
     public static void main(String[] args) {
         long seed = System.currentTimeMillis();
         Random random = new Random(seed);
         System.out.println("Seed: " + seed);
+        long startTime = System.currentTimeMillis();
+        
         GeneralTreeBuilder builder = 
                 new GeneralTreeBuilder(
                         TREE_SIZE,
                         TREE_DEPTH,
                         random);
         
-        long startTime = System.currentTimeMillis();
         GeneralTree<Integer> tree = builder.getTree();
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -41,7 +44,7 @@ public final class Demo {
         
         startTime = System.currentTimeMillis();
         
-        List<LowestCommonAncestorResult<Integer>> results =
+        List<LowestCommonAncestorResult<Integer>> results1 =
                 new OfflineLowestCommonAncestorComputer<Integer>()
                         .tarjanOffLineLowestCommonAncestors(tree, queries);
         
@@ -52,6 +55,29 @@ public final class Demo {
                         + " in "
                         + duration 
                         + " milliseconds.");
+        
+        startTime = System.currentTimeMillis();
+        
+        List<LowestCommonAncestorResult<Integer>> results2 =
+                new FasterOfflineLowestCommonAncestorComputer<Integer>()
+                        .tarjanOffLineLowestCommonAncestors(tree, queries);
+        
+        endTime = System.currentTimeMillis();
+        duration = endTime - startTime;
+        System.out.println(
+                FasterOfflineLowestCommonAncestorComputer.class.getSimpleName()
+                        + " in "
+                        + duration 
+                        + " milliseconds.");
+        
+        Set<LowestCommonAncestorResult<Integer>> resultSet1 = 
+                new HashSet<>(results1);
+        
+        Set<LowestCommonAncestorResult<Integer>> resultSet2 = 
+                new HashSet<>(results2);
+        
+        System.out.println("Algorithms agree: " + 
+                resultSet1.equals(resultSet2));
     }
     
     private static GeneralTreeBuilder getGeneralTreeBuilder() {
