@@ -8,13 +8,10 @@ package com.github.coderodde.util.disjointset;
  * @version 1.6 (Sep 5, 2021)
  * @since 1.6 (Sep 5, 2021)
  */
-public final class DisjointSetRecursivePathCompressionRootFinder<E>
-extends AbstractDisjointSetRootFinder<E> {
+public final class DisjointSetRootFinder<E> {
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
+    protected DisjointSet<E> ownerDisjointSet;
+    
     public E find(E item) {
         DisjointSetNode<E> node = 
                 ownerDisjointSet.find(ownerDisjointSet.getNode(item));

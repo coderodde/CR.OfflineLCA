@@ -9,13 +9,10 @@ package com.github.coderodde.util.disjointset;
  * @version 1.6 (Sep 5, 2021)
  * @since 1.6 (Sep 5, 2021)
  */
-public final class DisjointSetUnionByRankComputer<E> 
-extends AbstractDisjointSetUnionComputer<E> {
+public final class DisjointSetUnionComputer<E> {
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
+    protected DisjointSet<E> ownerDisjointSet;
+    
     public void union(E item1, E item2) {
         DisjointSetNode<E> node1 = 
                     ownerDisjointSet.find(ownerDisjointSet.getNode(item1));

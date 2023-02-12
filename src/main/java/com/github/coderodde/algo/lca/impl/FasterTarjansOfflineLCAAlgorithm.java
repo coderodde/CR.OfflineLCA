@@ -25,11 +25,12 @@ import java.util.Set;
 public final class FasterTarjansOfflineLCAAlgorithm<E> 
         implements OfflineLCAAlgorithm<E> {
 
-    private final AbstractDisjointSetRootFinder<GeneralTreeNode<E>> rootFinder = 
-            new DisjointSetRecursivePathCompressionRootFinder<>();
+    private final DisjointSetRootFinder
+            <GeneralTreeNode<E>> rootFinder = 
+            new DisjointSetRootFinder<>();
     
-    private final AbstractDisjointSetUnionComputer<GeneralTreeNode<E>> 
-            unionComputer = new DisjointSetUnionByRankComputer<>();
+    private final DisjointSetUnionComputer<GeneralTreeNode<E>> 
+            unionComputer = new DisjointSetUnionComputer<>();
     
     public List<LowestCommonAncestorResult<E>> 
         processQueries(GeneralTree<E> tree,

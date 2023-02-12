@@ -122,4 +122,31 @@ public abstract class AbstractOfflineLowestCommonAncestorComputerTest {
         assertTrue(results.contains(result1));
         assertTrue(results.contains(result2));
     }
+    
+    @Test
+    public void sameQueryNodes() {
+        GeneralTreeNode<Integer> node1 = new GeneralTreeNode<>(1);
+        GeneralTreeNode<Integer> node2 = new GeneralTreeNode<>(2);
+        GeneralTreeNode<Integer> node3 = new GeneralTreeNode<>(3);
+        
+        node1.addChild(node2);
+        node2.addChild(node3);
+        
+        GeneralTree<Integer> tree = new GeneralTree<>(node1);
+        
+        List<LowestCommonAncestorResult<Integer>> results = 
+                algorithm.processQueries(
+                        tree,
+                        Arrays.asList(
+                                new LowestCommonAncestorQuery<Integer>(
+                                        node2,
+                                        node2)));
+        
+        assertEquals(1, results.size());
+        
+        LowestCommonAncestorResult<Integer> result = 
+                new LowestCommonAncestorResult<>(node2, node2, node2);
+        
+        assertEquals(result, results.get(0));
+    }
 }
