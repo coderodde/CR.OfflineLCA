@@ -104,19 +104,17 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         }
         
         for (LowestCommonAncestorQuery<E> pair : nodePairMap.get(node)) {
-            if (pair.queryContainsNode(node)) {
-                GeneralTreeNode<E> v = pair.getOppositeNode(node);
-                
-                if (blackSet.contains(v)) {
-                    LowestCommonAncestorResult<E> result =
-                            new LowestCommonAncestorResult<>(
-                                    pair.getFirstGeneralTreeNode(),
-                                    pair.getSecondGeneralTreeNode(),
-                                    ancestorMap.get(
-                                            rootFinder.find(v)));
-                    
-                    lowestCommonAncestorsList.add(result);
-                }
+            GeneralTreeNode<E> v = pair.getOppositeNode(node);
+
+            if (blackSet.contains(v)) {
+                LowestCommonAncestorResult<E> result =
+                        new LowestCommonAncestorResult<>(
+                                pair.getFirstGeneralTreeNode(),
+                                pair.getSecondGeneralTreeNode(),
+                                ancestorMap.get(
+                                        rootFinder.find(v)));
+
+                lowestCommonAncestorsList.add(result);
             }
         }
     }
@@ -126,7 +124,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
             List<LowestCommonAncestorQuery<E>> queries) {
         
         for (LowestCommonAncestorQuery<E> query : queries) {
-            GeneralTreeNode<E> firstNode = query.getFirstGeneralTreeNode();
+            GeneralTreeNode<E> firstNode  = query.getFirstGeneralTreeNode();
             GeneralTreeNode<E> secondNode = query.getSecondGeneralTreeNode();
             
             if (!pairMap.containsKey(firstNode)) {

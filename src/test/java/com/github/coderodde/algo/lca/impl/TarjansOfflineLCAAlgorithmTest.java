@@ -1,6 +1,4 @@
-package com.github.coderodde.algo.lca;
-
-import com.github.coderodde.algo.lca.impl.TarjansOfflineLCAAlgorithm;
+package com.github.coderodde.algo.lca.impl;
 
 public class TarjansOfflineLCAAlgorithmTest
 extends AbstractOfflineLCAAlgorithmTest {

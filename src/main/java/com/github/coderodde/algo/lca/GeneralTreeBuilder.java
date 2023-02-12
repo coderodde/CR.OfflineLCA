@@ -21,7 +21,7 @@ public final class GeneralTreeBuilder {
     public GeneralTreeBuilder(int size, int depth, Random random) {
         this.requestedSize = size;
         this.random = random;
-        buildImpl(tree.getRoot(), 5);
+        buildImpl(tree.getRoot(), depth);
     }
     
     public GeneralTree<Integer> getTree() {

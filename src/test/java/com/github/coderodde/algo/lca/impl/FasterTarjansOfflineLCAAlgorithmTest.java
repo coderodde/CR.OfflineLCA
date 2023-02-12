@@ -1,6 +1,4 @@
-package com.github.coderodde.algo.lca;
-
-import com.github.coderodde.algo.lca.impl.FasterTarjansOfflineLCAAlgorithm;
+package com.github.coderodde.algo.lca.impl;
 
 public class FasterTarjansOfflineLCAAlgorithmTest 
 extends AbstractOfflineLCAAlgorithmTest {

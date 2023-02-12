@@ -17,13 +17,12 @@ import java.util.Set;
  * @author Rodion "rodde" Efremov
  * @version 1.6 (Feb 12, 2023)
  * @since 1.6 (Feb 12, 2023)
- * @author Potilaskone
  */
 public final class Demo {
     
     private static final int TREE_SIZE = 1_000_000;
-    private static final int TREE_DEPTH = 10000;
-    private static final int NUMBER_OF_QUERIES = 2000;
+    private static final int TREE_DEPTH = 10;
+    private static final int NUMBER_OF_QUERIES = 1000;
     
     public static void main(String[] args) {
         long seed = System.currentTimeMillis();
