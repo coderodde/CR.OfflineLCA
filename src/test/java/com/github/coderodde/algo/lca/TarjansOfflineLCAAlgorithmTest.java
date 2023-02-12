@@ -3,7 +3,7 @@ package com.github.coderodde.algo.lca;
 import com.github.coderodde.algo.lca.impl.TarjansOfflineLCAAlgorithm;
 
 public class TarjansOfflineLCAAlgorithmTest
-extends AbstractOfflineLowestCommonAncestorComputerTest {
+extends AbstractOfflineLCAAlgorithmTest {
     
     public TarjansOfflineLCAAlgorithmTest() {
         super(new TarjansOfflineLCAAlgorithm<>());

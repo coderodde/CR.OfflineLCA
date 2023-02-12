@@ -10,11 +10,11 @@ import org.junit.Test;
  *
  * @author Potilaskone
  */
-public abstract class AbstractOfflineLowestCommonAncestorComputerTest {
+public abstract class AbstractOfflineLCAAlgorithmTest {
 
     protected final OfflineLCAAlgorithm<Integer> algorithm;
     
-    public AbstractOfflineLowestCommonAncestorComputerTest(
+    public AbstractOfflineLCAAlgorithmTest(
             OfflineLCAAlgorithm<Integer> algorithm) {
         this.algorithm = algorithm;
     }
