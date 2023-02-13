@@ -55,7 +55,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         
         loadPairMap(nodePairMap, queries);
         
-        tarjanOffLineLowestCommonAncestors(
+        processQueriesImpl(
                 tree.getRoot(), 
                 lowestCommonAncestorsResults,
                 queries,
@@ -67,7 +67,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         return lowestCommonAncestorsResults;
     }
         
-    private void tarjanOffLineLowestCommonAncestors(
+    private void processQueriesImpl(
             GeneralTreeNode<E> node,
             List<LowestCommonAncestorResult<E>> lowestCommonAncestorsList,
             List<LowestCommonAncestorQuery<E>> queries,
@@ -81,7 +81,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         ancestorMap.put(node, node);
         
         for (GeneralTreeNode<E> child : node.getChildren()) {
-            tarjanOffLineLowestCommonAncestors(
+            processQueriesImpl(
                     child, 
                     lowestCommonAncestorsList,
                     queries,

@@ -49,7 +49,7 @@ public final class TarjansOfflineLCAAlgorithm<E>
         Set<GeneralTreeNode<E>> blackSet = 
                 new HashSet<>(queries.size());
         
-        tarjanOffLineLowestCommonAncestors(
+        processQueriesImpl(
                 root.getRoot(), 
                 lowestCommonAncestorsResults,
                 queries,
@@ -60,7 +60,7 @@ public final class TarjansOfflineLCAAlgorithm<E>
         return lowestCommonAncestorsResults;
     }
         
-    private void tarjanOffLineLowestCommonAncestors(
+    private void processQueriesImpl(
             GeneralTreeNode<E> node,
             List<LowestCommonAncestorResult<E>> lowestCommonAncestorsList,
             List<LowestCommonAncestorQuery<E>> queries,
@@ -72,7 +72,7 @@ public final class TarjansOfflineLCAAlgorithm<E>
         ancestorMap.put(node, node);
         
         for (GeneralTreeNode<E> child : node.getChildren()) {
-            tarjanOffLineLowestCommonAncestors(
+            processQueriesImpl(
                     child, 
                     lowestCommonAncestorsList,
                     queries,
