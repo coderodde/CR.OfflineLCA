@@ -97,9 +97,8 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         
         blackSet.add(node);
         
-        Set<LowestCommonAncestorQuery<E>> pairSet = nodePairMap.get(node);
-        
-        for (LowestCommonAncestorQuery<E> pair : guardNull(pairSet)) {
+        for (LowestCommonAncestorQuery<E> pair 
+                : nullToEmptySet(nodePairMap.get(node))) {
             GeneralTreeNode<E> v = pair.getOppositeNode(node);
 
             if (blackSet.contains(v)) {
@@ -137,11 +136,11 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         }
     }
     
-    private static <E> Set<E> guardNull(Set<E> collection) {
-        if (collection == null) {
+    private static <E> Set<E> nullToEmptySet(Set<E> set) {
+        if (set == null) {
             return Collections.emptySet();
         }
         
-        return collection;
+        return set;
     }
 }
