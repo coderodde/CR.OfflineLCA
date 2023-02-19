@@ -103,7 +103,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
             return;
         }
         
-        for (LowestCommonAncestorQuery<E> pair : nodePairMap.get(node)) {
+        for (LowestCommonAncestorQuery<E> pair : pairSet) {
             GeneralTreeNode<E> v = pair.getOppositeNode(node);
 
             if (blackSet.contains(v)) {
