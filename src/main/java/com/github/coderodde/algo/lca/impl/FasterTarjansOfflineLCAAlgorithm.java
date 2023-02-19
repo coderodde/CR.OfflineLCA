@@ -19,7 +19,7 @@ import java.util.Set;
  * caching queries.
  * 
  * @author Rodion "rodde" Efremov
- * @version 1.6 (Feb 12, 2023)
+ * @version 1.61 (Feb 19, 2023)
  * @since 1.6 (Feb 12, 2023)
  */
 public final class FasterTarjansOfflineLCAAlgorithm<E> 
@@ -36,7 +36,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         processQueries(GeneralTree<E> tree,
                        List<LowestCommonAncestorQuery<E>> queries) {
             
-        List<LowestCommonAncestorResult<E>> lowestCommonAncestorsResults = 
+        List<LowestCommonAncestorResult<E>> results = 
                 new ArrayList<>(queries.size());
         
         DisjointSet<GeneralTreeNode<E>> disjointSet = 
@@ -57,19 +57,19 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         
         processQueriesImpl(
                 tree.getRoot(), 
-                lowestCommonAncestorsResults,
+                results,
                 queries,
                 disjointSet,
                 ancestorMap,
                 nodePairMap,
                 blackSet);
         
-        return lowestCommonAncestorsResults;
+        return results;
     }
         
     private void processQueriesImpl(
             GeneralTreeNode<E> node,
-            List<LowestCommonAncestorResult<E>> lowestCommonAncestorsList,
+            List<LowestCommonAncestorResult<E>> results,
             List<LowestCommonAncestorQuery<E>> queries,
             DisjointSet<GeneralTreeNode<E>> disjointSet,
             Map<GeneralTreeNode<E>, GeneralTreeNode<E>> ancestorMap,
@@ -83,7 +83,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         for (GeneralTreeNode<E> child : node.getChildren()) {
             processQueriesImpl(
                     child, 
-                    lowestCommonAncestorsList,
+                    results,
                     queries,
                     disjointSet,
                     ancestorMap,
@@ -114,7 +114,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
                                 ancestorMap.get(
                                         rootFinder.find(v)));
 
-                lowestCommonAncestorsList.add(result);
+                results.add(result);
             }
         }
     }

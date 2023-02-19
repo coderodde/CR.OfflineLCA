@@ -35,7 +35,7 @@ public final class TarjansOfflineLCAAlgorithm<E>
         processQueries(GeneralTree<E> root,
                        List<LowestCommonAncestorQuery<E>> queries) {
             
-        List<LowestCommonAncestorResult<E>> lowestCommonAncestorsResults = 
+        List<LowestCommonAncestorResult<E>> results = 
                 new ArrayList<>(queries.size());
         
         DisjointSet<GeneralTreeNode<E>> disjointSet = 
@@ -51,18 +51,18 @@ public final class TarjansOfflineLCAAlgorithm<E>
         
         processQueriesImpl(
                 root.getRoot(), 
-                lowestCommonAncestorsResults,
+                results,
                 queries,
                 disjointSet,
                 ancestorMap,
                 blackSet);
         
-        return lowestCommonAncestorsResults;
+        return results;
     }
         
     private void processQueriesImpl(
             GeneralTreeNode<E> node,
-            List<LowestCommonAncestorResult<E>> lowestCommonAncestorsList,
+            List<LowestCommonAncestorResult<E>> results,
             List<LowestCommonAncestorQuery<E>> queries,
             DisjointSet<GeneralTreeNode<E>> disjointSet,
             Map<GeneralTreeNode<E>, GeneralTreeNode<E>> ancestorMap,
@@ -74,7 +74,7 @@ public final class TarjansOfflineLCAAlgorithm<E>
         for (GeneralTreeNode<E> child : node.getChildren()) {
             processQueriesImpl(
                     child, 
-                    lowestCommonAncestorsList,
+                    results,
                     queries,
                     disjointSet,
                     ancestorMap,
@@ -98,7 +98,7 @@ public final class TarjansOfflineLCAAlgorithm<E>
                                     ancestorMap.get(
                                             rootFinder.find(v)));
                     
-                    lowestCommonAncestorsList.add(result);
+                    results.add(result);
                 }
             }
         }
