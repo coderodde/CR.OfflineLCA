@@ -8,6 +8,7 @@ import com.github.coderodde.algo.lca.OfflineLCAAlgorithm;
 import java.util.ArrayList;
 import java.util.List;
 import com.github.coderodde.util.disjointset.*;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -98,12 +99,7 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         
         Set<LowestCommonAncestorQuery<E>> pairSet = nodePairMap.get(node);
         
-        if (pairSet == null) {
-            // Guard against the null values in the below for each loop.
-            return;
-        }
-        
-        for (LowestCommonAncestorQuery<E> pair : pairSet) {
+        for (LowestCommonAncestorQuery<E> pair : guardNull(pairSet)) {
             GeneralTreeNode<E> v = pair.getOppositeNode(node);
 
             if (blackSet.contains(v)) {
@@ -139,5 +135,13 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
             
             pairMap.get(secondNode).add(query);
         }
+    }
+    
+    private static <E> Set<E> guardNull(Set<E> collection) {
+        if (collection == null) {
+            return Collections.emptySet();
+        }
+        
+        return collection;
     }
 }
