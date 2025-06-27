@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public final class Demo {
     
-    private static final int TREE_SIZE = 1_000_000;
+    private static final int TREE_SIZE = 1_00_000;
     private static final int TREE_DEPTH = 10;
     private static final int NUMBER_OF_QUERIES = 1000;
     

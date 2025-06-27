@@ -97,8 +97,11 @@ public final class FasterTarjansOfflineLCAAlgorithm<E>
         
         blackSet.add(node);
         
-        for (LowestCommonAncestorQuery<E> pair 
-                : nullToEmptySet(nodePairMap.get(node))) {
+        if (nodePairMap.get(node) == null) {
+            return;
+        }
+        
+        for (LowestCommonAncestorQuery<E> pair : nodePairMap.get(node)) {
             GeneralTreeNode<E> v = pair.getOppositeNode(node);
 
             if (blackSet.contains(v)) {
